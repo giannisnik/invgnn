@@ -20,6 +20,8 @@ class Invertible1x1Conv(nn.Module):
         self.S = nn.Parameter(U.diag()) # "crop out" the diagonal to its own parameter
         self.U = nn.Parameter(torch.triu(U, diagonal=1)) # "crop out" diagonal, stored in S
 
+        self.bias = nn.Parameter(torch.zeros(dim))
+
     def _assemble_W(self, device):
         """ assemble W from its pieces (P, L, U, S) """
         L = torch.tril(self.L, diagonal=-1) + torch.diag(torch.ones(self.dim, device=device))
@@ -29,7 +31,7 @@ class Invertible1x1Conv(nn.Module):
 
     def forward(self, x):
         W = self._assemble_W(x.device)
-        z = x @ W
+        z = x @ W + self.bias
         log_det = torch.sum(torch.log(torch.abs(self.S)))
         return z
 
