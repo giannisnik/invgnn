@@ -8,6 +8,7 @@ Code is written in Python 3.13 and requires:
 * PyTorch 2.7.1
 * PyTorch Geometric 2.6.1
 * NetworkX 3.4.2
+* PyGOD 1.1.0
 * scikit-learn 1.6.1
 
 
