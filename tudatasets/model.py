@@ -34,9 +34,9 @@ class Invertible1x1Conv(nn.Module):
         return z
       
 
-class GNN(nn.Module):
+class InvGNN(nn.Module):
     def __init__(self, input_dim, hidden_dim, n_layers, n_classes, dropout):
-        super(GNN, self).__init__()
+        super(InvGNN, self).__init__()
         self.n_layers = n_layers
 
         self.fc = nn.Linear(input_dim, hidden_dim)
