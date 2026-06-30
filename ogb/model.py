@@ -5,7 +5,7 @@ from torch_geometric.nn import global_add_pool
 
 class Invertible1x1Conv(nn.Module):
     """ 
-    As introduced in Glow paper.
+    As introduced in Glow paper, with bias.
     """
     
     def __init__(self, dim):
