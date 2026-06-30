@@ -15,7 +15,7 @@ from torch_geometric.utils import degree
 from torch_geometric.transforms import Compose
 from torch_geometric.utils import to_networkx
 
-from model import GNN
+from model import InvGNN
  
 unlabeled_datasets = ['IMDB-BINARY', 'IMDB-MULTI']
 
@@ -151,7 +151,7 @@ for i in range(10):
     test_loader = DataLoader(test_dataset, batch_size=args.batch_size)
     train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True)
 
-    model = GNN(dataset.num_features, args.hidden_dim, args.n_layers, dataset.num_classes, args.dropout).to(device)
+    model = InvGNN(dataset.num_features, args.hidden_dim, args.n_layers, dataset.num_classes, args.dropout).to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=args.lr) 
 
     early_stopper = EarlyStopper(patience=args.patience)
