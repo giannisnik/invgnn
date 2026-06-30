@@ -33,9 +33,9 @@ class Invertible1x1Conv(nn.Module):
         log_det = torch.sum(torch.log(torch.abs(self.S)))
         return z
 
-class GNN(nn.Module):
+class InvGNN(nn.Module):
     def __init__(self, hidden_dim, n_layers, n_classes, dropout):
-        super(GNN, self).__init__()
+        super(InvGNN, self).__init__()
         self.n_layers = n_layers
 
         self.atom_encoder = AtomEncoder(hidden_dim)
