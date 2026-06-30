@@ -3,7 +3,7 @@ from torch_geometric.loader import DataLoader
 from torch_geometric.utils import to_networkx
 import torch.optim as optim
 import torch.nn.functional as F
-from model import GNN
+from model import InvGNN
 
 from tqdm import tqdm
 import argparse
@@ -129,7 +129,7 @@ def main():
     valid_loader = DataLoader(dataset[split_idx["valid"]], batch_size=args.batch_size, shuffle=False, num_workers = args.num_workers)
     test_loader = DataLoader(dataset[split_idx["test"]], batch_size=args.batch_size, shuffle=False, num_workers = args.num_workers)
 
-    model = GNN(args.emb_dim, args.num_layer, dataset.num_tasks, args.drop_ratio).to(device)
+    model = InvGNN(args.emb_dim, args.num_layer, dataset.num_tasks, args.drop_ratio).to(device)
 
     optimizer = optim.Adam(model.parameters(), lr=0.001)
 
